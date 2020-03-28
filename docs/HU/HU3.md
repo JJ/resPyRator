@@ -1,6 +1,6 @@
 # Historia de usuario 3
 
-Como *medico*, quiero ver en la GUI los valores instantaneos de
+Como *medico*, quiero ver numericamente en la GUI los valores instantaneos de
 
 * presion
 * frecuencia respiratoria
@@ -10,9 +10,7 @@ Como *medico*, quiero ver en la GUI los valores instantaneos de
 
 Y que se
 
-* muestren alarmas
+* muestren alarmas en la GUI
 * suenen alarmas
 
-en caso de
-
-* que los valores estén fuera de rango, se producirá una alarma de fuera de rango para el *medico*
+en caso de que los valores estén fuera del rango fijado por el *médico*.

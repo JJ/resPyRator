@@ -12,4 +12,4 @@ mediante
 
 * el giro de encoders
 * pulsar teclas en un teclado fisico
-* ajustar valores en la pantalla
+* ajustar valores en la GUI mediante ratón o teclado.

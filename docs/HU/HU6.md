@@ -3,9 +3,7 @@
 Como *tecnico* quiero que cuando las 
 
 * versiones de protocolo
-* UUID
-* SN
+* identificador unico 
+* numero de serie
 
-sean distintas entre el master y slave tenga
-
-* un mensaje de alerta por pantalla
+que llegan al programa del PC de un mensaje de alerta por pantalla indicando que podría haber un conflicto de versiones
