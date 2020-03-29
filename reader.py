@@ -5,6 +5,7 @@ from ctypes import *
 import binascii
 import time
 
+
 class tx_frame(Structure):
     _pack_ = 1
     _fields_ = [("Header", c_uint8),
@@ -29,6 +30,7 @@ class tx_frame(Structure):
                 ("Answer", c_uint16),
                 ("Answer_to_frame_number", c_uint8),
                 ("Crc", c_uint16)]
+
 
 def crc16(nData: bytearray):
     INITIAL_MODBUS = 0xFFFF
@@ -72,7 +74,8 @@ def crc16(nData: bytearray):
         crc = (crc >> 8) ^ table[(crc ^ ch) & 0xFF]
     return crc
 
-def recv_packet_blocking(serial):
+
+def recv_packet_blocking(s):
     """Internal function to receive a Packet
     """
     packet = tx_frame()
@@ -85,14 +88,17 @@ def recv_packet_blocking(serial):
     ctypes.memmove(ctypes.pointer(packet),raw,ctypes.sizeof(packet))
     return packet
 
+
 def struct_to_bytes(st):
     buffer = create_string_buffer(sizeof(st))
     memmove(buffer, addressof(st), sizeof(st))
     return buffer.raw
 
+
 def send_packet(s,packet):
     data = struct_to_bytes(packet)
     s.write(data)
+
 
 def print_packet(packet):
     print("Readed Serialized: ")
@@ -119,6 +125,7 @@ def print_packet(packet):
     print("Answer_to_frame_number:%d" % packet.Answer_to_frame_number)
     print("Crc:%d" % packet.Crc)
 
+
 def check_crc(packet):
     received_crc = packet.Crc
     packet.Crc = 0
@@ -127,6 +134,7 @@ def check_crc(packet):
         return True
     else:
         return False
+
 
 def generate_crc(packet):
     packet.Crc = 0;
