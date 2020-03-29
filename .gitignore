@@ -25,3 +25,4 @@ pip-log.txt
 
 # Lock files
 *.~lock*
+.vscode/launch.json
