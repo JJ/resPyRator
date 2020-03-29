@@ -18,4 +18,21 @@ if __name__ == '__main__':
     # Start up the server to expose the metrics.
     start_http_server(8001)
     while True:
+
+        packet = recv_packet_blocking(s)
+        print_packet(packet)
+        if check_crc(packet):
+            print("Packet received correctly")
+        else:
+            print("WRONG PACKET!!")
+        packet.Header = 12
+        generate_crc(packet)
+        print("Sending packet with crc:%d" % packet.Crc)
+        send_packet(s,packet)
+        #print("New Packet received[%d]" % counter)
+        #time.sleep(0.5)
+        #send_packet(s,p)
+        counter = counter +1
+
+
         pass

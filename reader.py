@@ -132,21 +132,3 @@ def generate_crc(packet):
     packet.Crc = 0;
     packet.Crc = crc16(struct_to_bytes(packet))
 
-s = serial.Serial(port='/dev/ttyACM0', baudrate=115200,timeout=0.1)
-counter = 0
-
-while True:
-    packet = recv_packet_blocking(s)
-    print_packet(packet)
-    if check_crc(packet):
-        print("Packet received correctly")
-    else:
-        print("WRONG PACKET!!")
-    packet.Header = 12
-    generate_crc(packet)
-    print("Sending packet with crc:%d" % packet.Crc)
-    send_packet(s,packet)
-    #print("New Packet received[%d]" % counter)
-    #time.sleep(0.5)
-    #send_packet(s,p)
-    counter = counter +1
