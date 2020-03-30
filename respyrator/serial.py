@@ -2,10 +2,6 @@
 # For copyright and license notices, see LICENSE file in root directory
 ##############################################################################
 import os
-try:
-    import pty
-except ImportError:
-    pty = None
 import serial
 import time
 import sys
@@ -66,8 +62,6 @@ def serial_get(port):
 class FakeSerial:
     def __init__(self, file_name, sleep=0.2):
         self._waiting = True
-        master, slave = pty.openpty()
-        self.serial = serial.Serial(os.ttyname(slave))
         self.sleep = sleep
         if not os.path.exists(file_name):
             raise Exception(
